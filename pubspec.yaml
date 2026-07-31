@@ -41,6 +41,10 @@ dependencies:
   dio: ^5.11.0
   cached_network_image: ^3.4.1
   lottie: ^3.5.1
+  dartz: ^0.10.1
+  animated_snack_bar: ^0.4.0
+  get_it: ^9.2.1
+  flutter_secure_storage: ^10.3.1
 
 dev_dependencies:
   flutter_test:
