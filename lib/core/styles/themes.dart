@@ -2,9 +2,17 @@ import 'package:ecommerce_app/core/styles/app_colors.dart';
 import 'package:ecommerce_app/core/styles/app_fonts.dart';
 import 'package:ecommerce_app/core/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppThemes {
   static final lightTheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+      ),
+    ),
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.whiteColor,
     fontFamily: AppFonts.mainFontName,
