@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_app/core/network/api_endpoints.dart';
 import 'package:ecommerce_app/core/network/dio_helper.dart';
-import 'package:ecommerce_app/features/home/data/models/categories_model.dart';
 import 'package:ecommerce_app/features/home/data/models/products_model.dart';
 
 class HomeRepo {

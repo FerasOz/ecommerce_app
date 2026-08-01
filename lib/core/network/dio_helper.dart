@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/network/api_endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
