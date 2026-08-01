@@ -30,7 +30,7 @@ class DioHelper {
     }
   }
 
-  postRequest({
+  Future<Response<dynamic>> postRequest({
     required String endPoint,
     required Map<String, dynamic> data,
   }) async {

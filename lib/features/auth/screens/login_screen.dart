@@ -38,107 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       child: Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
-          builder: (context, state) {
-            if (state is LoadingAuthState) {
-              return LoadingWidget();
-            }
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22.w),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const HeightSpace(28),
-                    SizedBox(
-                      width: 335.w,
-                      child: Text(
-                        "Login To Your Account",
-                        style: AppStyles.primaryHeadLinesStyle,
-                      ),
-                    ),
-                    const HeightSpace(8),
-                    SizedBox(
-                      width: 335.w,
-                      child: Text(
-                        "it's great to see you again",
-                        style: AppStyles.grey12MediumStyle,
-                      ),
-                    ),
-                    const HeightSpace(32),
-                    Text("User Name", style: AppStyles.black16w500Style),
-                    const HeightSpace(8),
-                    CustomTextField(
-                      controller: username,
-                      hintText: "Enter Your User Name",
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter Your User Name";
-                        }
-                        return null;
-                      },
-                    ),
-                    const HeightSpace(16),
-                    Text("Password", style: AppStyles.black16w500Style),
-                    const HeightSpace(8),
-                    CustomTextField(
-                      hintText: "Enter Your Password",
-                      controller: password,
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye,
-                        color: AppColors.greyColor,
-                        size: 20.sp,
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter Your Password";
-                        }
-                        if (value.length < 6) {
-                          return "Password must be at least 6 characters";
-                        }
-                        return null;
-                      },
-                    ),
-                    const HeightSpace(55),
-                    PrimayButtonWidget(
-                      buttonText: "Sign in",
-                      onPress: () {
-                        if (formKey.currentState!.validate()) {
-                          context.read<AuthCubit>().login(
-                            username: username.text,
-                            password: password.text,
-                          );
-                        }
-                      },
-                    ),
-                    const Spacer(),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          context.pushNamed(AppRoutes.registerScreen);
-                        },
-                        child: RichText(
-                          text: TextSpan(
-                            text: "Don't have an account? ",
-                            style: AppStyles.black16w500Style.copyWith(
-                              color: AppColors.secondaryColor,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: "Join",
-                                style: AppStyles.black15BoldStyle,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const HeightSpace(16),
-                  ],
-                ),
-              ),
-            );
-          },
           listener: (BuildContext context, AuthState state) {
             if (state is ErrorAuthState) {
               showAinmatedSnackDialog(
@@ -152,6 +51,127 @@ class _LoginScreenState extends State<LoginScreen> {
               showAinmatedSnackDialog(context, message: state.message);
               context.pushReplacementNamed(AppRoutes.mainScreen);
             }
+          },
+          builder: (context, state) {
+            if (state is LoadingAuthState) {
+              return const LoadingWidget();
+            }
+
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                final minHeight = constraints.maxHeight.isFinite
+                    ? constraints.maxHeight
+                    : MediaQuery.sizeOf(context).height;
+
+                return SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  padding: EdgeInsets.only(bottom: 24.h),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: minHeight),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 22.w),
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const HeightSpace(28),
+                            SizedBox(
+                              width: 335.w,
+                              child: Text(
+                                "Login To Your Account",
+                                style: AppStyles.primaryHeadLinesStyle,
+                              ),
+                            ),
+                            const HeightSpace(8),
+                            SizedBox(
+                              width: 335.w,
+                              child: Text(
+                                "it's great to see you again",
+                                style: AppStyles.grey12MediumStyle,
+                              ),
+                            ),
+                            const HeightSpace(32),
+                            Text(
+                              "User Name",
+                              style: AppStyles.black16w500Style,
+                            ),
+                            const HeightSpace(8),
+                            CustomTextField(
+                              controller: username,
+                              hintText: "Enter Your User Name",
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Enter Your User Name";
+                                }
+                                return null;
+                              },
+                            ),
+                            const HeightSpace(16),
+                            Text("Password", style: AppStyles.black16w500Style),
+                            const HeightSpace(8),
+                            CustomTextField(
+                              hintText: "Enter Your Password",
+                              controller: password,
+                              suffixIcon: Icon(
+                                Icons.remove_red_eye,
+                                color: AppColors.greyColor,
+                                size: 20.sp,
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Enter Your Password";
+                                }
+                                if (value.length < 6) {
+                                  return "Password must be at least 6 characters";
+                                }
+                                return null;
+                              },
+                            ),
+                            const HeightSpace(55),
+                            PrimayButtonWidget(
+                              buttonText: "Sign in",
+                              onPress: () {
+                                if (formKey.currentState!.validate()) {
+                                  context.read<AuthCubit>().login(
+                                    username: username.text,
+                                    password: password.text,
+                                  );
+                                }
+                              },
+                            ),
+                            SizedBox(height: 350.h),
+                            Center(
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.pushNamed(AppRoutes.registerScreen);
+                                },
+                                child: RichText(
+                                  text: TextSpan(
+                                    text: "Don't have an account? ",
+                                    style: AppStyles.black16w500Style.copyWith(
+                                      color: AppColors.secondaryColor,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: "Join",
+                                        style: AppStyles.black15BoldStyle,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const HeightSpace(16),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
           },
         ),
       ),
