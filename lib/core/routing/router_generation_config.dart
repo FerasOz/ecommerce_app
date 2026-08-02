@@ -4,6 +4,7 @@ import 'package:ecommerce_app/features/address/address_screen.dart';
 import 'package:ecommerce_app/features/auth/cubit/auth_cubit.dart';
 import 'package:ecommerce_app/features/auth/screens/login_screen.dart';
 import 'package:ecommerce_app/features/auth/screens/register_screen.dart';
+import 'package:ecommerce_app/features/cart/cubit/cart_cubit.dart';
 import 'package:ecommerce_app/features/home/data/models/products_model.dart';
 import 'package:ecommerce_app/features/main/main_screen.dart';
 import 'package:ecommerce_app/features/product/product_screen.dart';
@@ -31,7 +32,10 @@ class RouterGenerationConfig {
         GoRoute(
           name: AppRoutes.mainScreen,
           path: AppRoutes.mainScreen,
-          builder: (context, state) => const MainScreen(),
+          builder: (context, state) => BlocProvider(
+            create: (context) => sl<CartCubit>()..fetchCart(),
+            child: const MainScreen(),
+          ),
         ),
         GoRoute(
           name: AppRoutes.addressScreen,
@@ -41,8 +45,10 @@ class RouterGenerationConfig {
         GoRoute(
           name: AppRoutes.productScreen,
           path: AppRoutes.productScreen,
-          builder: (context, state) =>
-              ProductScreen(product: state.extra as ProductsModel),
+          builder: (context, state) => BlocProvider(
+            create: (context) => sl<CartCubit>(),
+            child: ProductScreen(product: state.extra as ProductsModel),
+          ),
         ),
       ],
     );

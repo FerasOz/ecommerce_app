@@ -8,6 +8,7 @@ class ProductItemWidget extends StatelessWidget {
   final String title;
   final String price;
   final String image;
+  final double rating;
   final Function()? onTap;
   const ProductItemWidget({
     super.key,
@@ -15,6 +16,7 @@ class ProductItemWidget extends StatelessWidget {
     required this.price,
     this.onTap,
     required this.image,
+    required this.rating,
   });
 
   @override
@@ -44,12 +46,24 @@ class ProductItemWidget extends StatelessWidget {
               style: AppStyles.black15BoldStyle.copyWith(fontSize: 12.sp),
             ),
             const HeightSpace(4),
-            Text(
-              "\$$price",
-              style: AppStyles.grey12MediumStyle.copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 8.sp,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "\$$price",
+                  style: AppStyles.grey12MediumStyle.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 8.sp,
+                  ),
+                ),
+                Text(
+                  "$rating/5",
+                  style: AppStyles.black15BoldStyle.copyWith(
+                    fontSize: 8.sp,
+                    color: Colors.orange,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

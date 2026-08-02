@@ -137,6 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             (product) => ProductItemWidget(
                               title: product.title ?? "",
                               price: product.price.toString(),
+                              rating: product.rating?.rate ?? 0.0,
                               image: product.image ?? "",
                               onTap: () {
                                 context.pushNamed(

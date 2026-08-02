@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/core/styles/app_colors.dart';
 import 'package:ecommerce_app/core/utils/service_locator.dart';
 import 'package:ecommerce_app/features/account/account_screen.dart';
-import 'package:ecommerce_app/features/cart/cart_screen.dart';
+import 'package:ecommerce_app/features/cart/ui/cart_screen.dart';
 import 'package:ecommerce_app/features/home/home_screen.dart';
 import 'package:ecommerce_app/features/home/logic/categories_cubit/categories_cubit.dart';
 import 'package:ecommerce_app/features/home/logic/products_cubit/products_cubit.dart';
