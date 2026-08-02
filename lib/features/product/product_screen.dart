@@ -1,11 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/core/styles/app_text_styles.dart';
 import 'package:ecommerce_app/core/widgets/primary_button_widget.dart';
 import 'package:ecommerce_app/core/widgets/spacing_widgets.dart';
+import 'package:ecommerce_app/features/home/data/models/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
+  final ProductsModel product;
+  const ProductScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -24,46 +27,47 @@ class ProductScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HeightSpace(20),
-                  Container(
+                  SizedBox(
                     width: 341.w,
                     height: 341.h,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(8.r),
+                    child: CachedNetworkImage(
+                      imageUrl: product.image ?? "",
+                      fit: BoxFit.cover,
                     ),
                   ),
                   const HeightSpace(12),
                   Text(
-                    "T Shirt ",
+                    product.title ?? "",
                     style: AppStyles.black16w500Style.copyWith(fontSize: 24.sp),
                   ),
                   const HeightSpace(8),
                   Row(
                     children: [
-                      Icon(
-                        Icons.star,
-                        color: Colors.orange,
-                        size: 18.sp,
-                      ),
+                      Icon(Icons.star, color: Colors.orange, size: 18.sp),
                       const WidthSpace(2),
                       Text(
-                        "4.5/5",
-                        style: AppStyles.black15BoldStyle
-                            .copyWith(decoration: TextDecoration.underline),
+                        "${product.rating ?? 0.0}/5",
+                        style: AppStyles.black15BoldStyle.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                       const WidthSpace(2),
                       Text(
                         "(45 Reviews)",
                         style: AppStyles.grey12MediumStyle.copyWith(
-                            fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp,
+                        ),
                       ),
                     ],
                   ),
                   const HeightSpace(8),
                   Text(
-                    "Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them",
+                    product.description ?? "",
                     style: AppStyles.grey12MediumStyle.copyWith(
-                        fontSize: 16.sp, fontWeight: FontWeight.normal),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                   const HeightSpace(150),
                 ],
@@ -88,14 +92,17 @@ class ProductScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Price",
-                            style: AppStyles.grey12MediumStyle
-                                .copyWith(fontSize: 16.sp),
+                            style: AppStyles.grey12MediumStyle.copyWith(
+                              fontSize: 16.sp,
+                            ),
                           ),
                           HeightSpace(4),
                           Text(
-                            "1120 \$",
+                            "\$${product.price ?? 0.0}",
                             style: AppStyles.black16w500Style.copyWith(
-                                fontSize: 24.sp, fontWeight: FontWeight.bold),
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -116,7 +123,7 @@ class ProductScreen extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
