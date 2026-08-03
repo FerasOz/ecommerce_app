@@ -35,9 +35,12 @@ class ProductScreen extends StatelessWidget {
                   SizedBox(
                     width: 341.w,
                     height: 341.h,
-                    child: CachedNetworkImage(
-                      imageUrl: product.image ?? "",
-                      fit: BoxFit.contain,
+                    child: Hero(
+                      tag: "product${product.title}",
+                      child: CachedNetworkImage(
+                        imageUrl: product.image ?? "",
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                   const HeightSpace(12),

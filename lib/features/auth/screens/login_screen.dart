@@ -35,35 +35,35 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: BlocConsumer<AuthCubit, AuthState>(
-          listener: (BuildContext context, AuthState state) {
-            if (state is ErrorAuthState) {
-              showAinmatedSnackDialog(
-                context,
-                type: AnimatedSnackBarType.error,
-                message: state.message,
-              );
-            }
+    return Scaffold(
+      body: BlocConsumer<AuthCubit, AuthState>(
+        listener: (BuildContext context, AuthState state) {
+          if (state is ErrorAuthState) {
+            showAinmatedSnackDialog(
+              context,
+              type: AnimatedSnackBarType.error,
+              message: state.message,
+            );
+          }
 
-            if (state is SuccessAuthState) {
-              showAinmatedSnackDialog(context, message: state.message);
-              context.pushReplacementNamed(AppRoutes.mainScreen);
-            }
-          },
-          builder: (context, state) {
-            if (state is LoadingAuthState) {
-              return const LoadingWidget();
-            }
+          if (state is SuccessAuthState) {
+            showAinmatedSnackDialog(context, message: state.message);
+            context.pushReplacementNamed(AppRoutes.mainScreen);
+          }
+        },
+        builder: (context, state) {
+          if (state is LoadingAuthState) {
+            return const LoadingWidget();
+          }
 
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                final minHeight = constraints.maxHeight.isFinite
-                    ? constraints.maxHeight
-                    : MediaQuery.sizeOf(context).height;
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              final minHeight = constraints.maxHeight.isFinite
+                  ? constraints.maxHeight
+                  : MediaQuery.sizeOf(context).height;
 
-                return SingleChildScrollView(
+              return SafeArea(
+                child: SingleChildScrollView(
                   keyboardDismissBehavior:
                       ScrollViewKeyboardDismissBehavior.onDrag,
                   padding: EdgeInsets.only(bottom: 24.h),
@@ -169,11 +169,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                );
-              },
-            );
-          },
-        ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
