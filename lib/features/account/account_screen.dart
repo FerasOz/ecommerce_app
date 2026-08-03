@@ -1,9 +1,8 @@
 import 'package:ecommerce_app/core/routing/app_routes.dart';
 import 'package:ecommerce_app/core/styles/app_assets.dart';
-import 'package:ecommerce_app/core/styles/app_text_styles.dart';
 import 'package:ecommerce_app/core/widgets/spacing_widgets.dart';
 import 'package:ecommerce_app/features/account/widgets/account_item_widget.dart';
-
+import 'package:ecommerce_app/features/account/widgets/logout_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -71,24 +70,7 @@ class AccountScreen extends StatelessWidget {
           const HeightSpace(16),
           Divider(thickness: 8, color: Color(0xffE6E6E6)),
           const Spacer(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-            child: InkWell(
-              onTap: () {},
-              child: Row(
-                children: [
-                  Icon(Icons.logout, color: Colors.redAccent, size: 25.sp),
-                  const WidthSpace(8),
-                  Text(
-                    "Logout",
-                    style: AppStyles.black15BoldStyle.copyWith(
-                      color: Colors.redAccent,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          LogoutButtonWidget(),
           const HeightSpace(20),
         ],
       ),
