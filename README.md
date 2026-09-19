@@ -17,7 +17,6 @@ A Flutter shopping application built around the [Fake Store API](https://fakesto
 - [Getting Started](#getting-started)
 - [Known Limitations](#known-limitations)
 - [Roadmap](#roadmap)
-- [Testing](#testing)
 
 ## Features
 
