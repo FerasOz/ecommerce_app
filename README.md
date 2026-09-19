@@ -14,7 +14,6 @@ A Flutter shopping application built around the [Fake Store API](https://fakesto
 - [Tech Stack](#tech-stack)
 - [API Integration](#api-integration)
 - [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
 - [Known Limitations](#known-limitations)
 - [Roadmap](#roadmap)
 
@@ -187,38 +186,6 @@ assets/
 
 test/
 └── widget_test.dart
-```
-
-## Getting Started
-
-### Prerequisites
-
-- Flutter SDK compatible with the Dart SDK constraint in `pubspec.yaml` (`^3.12.2`).
-- Android Studio or Xcode for mobile development.
-- A connected emulator, simulator, or physical device.
-- Network access to `fakestoreapi.com`.
-
-### Installation
-
-```bash
-git clone <repository-url>
-cd ecommerce_app
-flutter pub get
-flutter run
-```
-
-Check the local environment before running:
-
-```bash
-flutter doctor
-```
-
-Useful commands:
-
-```bash
-flutter analyze
-flutter test
-flutter build apk --release
 ```
 
 ### Demo Authentication
